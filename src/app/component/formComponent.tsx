@@ -10,14 +10,19 @@ export const FormComponent = () => {
   };
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-2 block">
-          <Label htmlFor="password1" value="Add Todo" />
+      <form onSubmit={handleSubmit} className={"flex gap-2 place-items-center"}>
+        <div className="flex-1">
+          <TextInput
+            id="password1"
+            type="textarea"
+            required={true}
+            shadow={true}
+            placeholder="add your task"
+          />
         </div>
-        <TextInput id="password1" type="text" required={true} />
-        <div>
-          <Button type="submit">Submit</Button>
-        </div>
+        <Button type="submit" className="flex-4">
+          Submit
+        </Button>
       </form>
     </>
   );
