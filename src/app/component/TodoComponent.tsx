@@ -1,24 +1,24 @@
 "use client";
-import { Card } from "flowbite-react";
 import { useEffect, useState } from "react";
+import { TaskComponent } from "./TaskComponent";
 
-export default function TodoComponent() {
-  const [data, setData] = useState(null);
+export default function TodoComponent(props) {
+  const [data, setData] = useState(props.data);
 
-  const fetchdata = async () => {
-    const response = await fetch("https://jsonplaceholder.typicode.com/todos/");
-    const dataRes = await response.json();
-    setData([...dataRes]);
-  };
+  //   const fetchdata = async () => {
+  //     const response = await fetch("https://jsonplaceholder.typicode.com/todos/");
+  //     const dataRes = await response.json();
+  //     setData([...dataRes]);
+  //   };
 
-  useEffect(() => {
-    fetchdata();
-  }, []);
+  //   useEffect(() => {
+  //     fetchdata();
+  //   }, []);
 
   return (
     <>
       {data ? (
-        data.map((todo, index) => <h1>{todo.title}</h1>)
+        data.map((todo, index) => <TaskComponent key={index} {...todo} />)
       ) : (
         <h1>Loading</h1>
       )}
