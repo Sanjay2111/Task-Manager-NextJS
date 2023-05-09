@@ -1,29 +1,33 @@
 "use client";
-import { Button, Label, TextInput } from "flowbite-react";
+
+import { Button, TextInput } from "flowbite-react";
 import { useState } from "react";
 
-export const FormComponent = () => {
-  const [task, setTasks] = useState("");
+export const FormComponent = ({ onAddTask }) => {
+  const [task, setTask] = useState("");
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    setTasks("");
+    onAddTask(task);
+    setTask("");
   };
+
   return (
-    <>
-      <form onSubmit={handleSubmit} className={"flex gap-2 place-items-center"}>
-        <div className="flex-1">
-          <TextInput
-            id="password1"
-            type="textarea"
-            required={true}
-            shadow={true}
-            placeholder="add your task"
-          />
-        </div>
-        <Button type="submit" className="flex-4">
-          Submit
-        </Button>
-      </form>
-    </>
+    <form onSubmit={handleSubmit} className="flex gap-2 place-items-center">
+      <div className="flex-1">
+        <TextInput
+          id="task"
+          type="textarea"
+          required={true}
+          shadow={true}
+          placeholder="Add your task"
+          value={task}
+          onChange={(event) => setTask(event.target.value)}
+        />
+      </div>
+      <Button type="submit" className="flex-4">
+        Submit
+      </Button>
+    </form>
   );
 };
